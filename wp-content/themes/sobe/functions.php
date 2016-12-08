@@ -47,5 +47,63 @@ add_filter ( 'show_admin_bar', '__return_false' );
 add_action( 'after_setup_theme', 'woocommerce_support' );
 
 function woocommerce_support() {
-	add_theme_support( 'woocommerce' );
+    add_theme_support( 'woocommerce' );
+}
+
+/*
+ * Display the subcategories of a given category, by name
+ */
+function woocommerce_subcats_from_parentcat_by_NAME($atts) {
+
+    $parent_cat_NAME = $atts['categorie'];
+    
+    $IDbyNAME = get_term_by('name', $parent_cat_NAME, 'product_cat');
+
+    $product_cat_ID = $IDbyNAME->term_id;
+
+    $args = array(
+
+       'hierarchical' => 1,
+
+       'show_option_none' => '',
+
+       'hide_empty' => 0,
+
+       'parent' => $product_cat_ID,
+
+       'taxonomy' => 'product_cat'
+
+    );
+
+    $subcats = get_categories($args);
+
+    foreach ($subcats as $cat) { ?>
+    <div class="col-md-4 text-center">
+        <?php
+            //echo $link = get_term_link( $cat->slug, $cat->taxonomy ).'<br>';
+           
+            $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
+                $image = wp_get_attachment_url( $thumbnail_id );
+                if ( $image ) { ?>
+                
+                    <a class="orange-link" href="<?php echo $link; ?>">
+                    <?php
+                        echo '<img src="' . $image . '" alt="" />';
+                    } ?>
+                    <p><?php echo '<br>'.$cat->name; ?> </p></a>
+               
+    </div>
+    <?php }
+}
+
+add_shortcode( 'categorie_shortcode', 'woocommerce_subcats_from_parentcat_by_NAME' );
+
+/*
+ * Display the subcategories of a given category, by name
+ */
+function wc_category_info_by_name($parent_cat_NAME) {
+
+    $IDbyNAME = get_term_by('name', $parent_cat_NAME, 'product_cat');
+
+    echo $IDbyNAME->description;
 }

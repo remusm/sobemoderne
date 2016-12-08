@@ -12,6 +12,9 @@ body {
     font-weight: 300;
 }
 
+img {
+    max-width: 100%;
+}
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Open Sans',sans-serif;
     font-weight: 300;
@@ -110,4 +113,58 @@ h3 {
 .home-cats p a {
     color: #555;
     font-weight: 400;
+}
+
+/* CATEGORY WITH SUBCATEGORIES PAGE STYLES */
+.breadcrumb-top {
+    margin-top: 10px;
+}
+
+.breadcrumb-underline { 
+    border-bottom: 5px solid #EEE; 
+    margin-top: 10px;
+}
+
+.orange-link {
+    color: #f79122;
+    font-weight: 400 !important;
+    line-height: 22px;    
+    display: block;
+    padding: 10px;
+    line-height: 20px;
+    border: 1px solid #ddd;
+    transition: all 0.2s ease-in-out;
+    margin: 10px 0;
+}
+
+.orange-link:hover {
+    border-color: #f79122;
+    color: #f79122;
+}
+
+.woocommerce-breadcrumb a {
+    color: #f79122;
+    font-size: 14px;
+}
+
+.cat-slider-wrapper {
+    width: 100%;
+    background-color: #eee;        
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.category-description {    
+    width: 100%;
+    padding-top: 10px;
+    padding-top: 10px;
+    background: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+}
+
+.fotorama--wp {
+    padding: 4px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }
