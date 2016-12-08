@@ -1,15 +1,113 @@
 /*
 Theme Name: Sobe Moderne
-Theme URI: https://wordpress.org/themes/twentysixteen/
-Author: the WordPress team
-Author URI: https://wordpress.org/
-Description: Twenty Sixteen is a modernized take on an ever-popular WordPress layout — the horizontal masthead with an optional right sidebar that works perfectly for blogs and websites. It has custom color options with beautiful default color schemes, a harmonious fluid grid using a mobile-first approach, and impeccable polish in every detail. Twenty Sixteen will make your WordPress look beautiful everywhere.
-Version: 1.3
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: one-column, two-columns, right-sidebar, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready, blog
+Author: Remus Mesar
+Version: 1.0
 Text Domain: sobe
-
-This theme, like WordPress, is licensed under the GPL.
-Use it to make something cool, have fun, and share what you've learned with others.
 */
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #555;
+    font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
+    color: #555;
+    margin: 10px 0;
+    line-height: 40px;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+h3 {
+    color: #f79122;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+/*
+    HEADER STYLES
+*/
+.page-subtitle {
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 200;
+    margin-bottom: 20px;
+}
+
+/* FOOTER STYLES */
+.copyright {
+    background-color: #212121;
+    color: #717171;
+    padding: 35px 0;
+    text-align: center;    
+}
+
+/* MENU STYLES */
+#menu-main-menu {
+    margin-top: 20px;
+}
+
+.nav>li>a {
+    font-size: 17px;
+    color: #555;
+}
+
+.nav-pills>li>a {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    line-height: 14px;
+}
+
+/*
+    FRONT PAGE STYLES
+*/
+.hmargin {
+    margin-top: 10px;
+}
+
+.slider-wrapper {
+    width: 100%;
+    background-color: #555555;
+}
+
+.page-band-wrapper {    
+    width: 100%;
+    background-color: #eee;
+    padding-top: 10px;
+}
+
+.slider-container {
+    width: 1300px;
+    margin: 0 auto;
+    margin-top: -14px;
+    margin-bottom: -14px;
+}
+
+.page-band {
+    background: #eee;
+}
+
+.home-cats p {
+    color: #555;
+    font-weight: 400;    
+    font-size: 13px;
+    line-height: 19px;
+    margin-top: 10px;
+}
+
+.home-cats h3 a {
+    color: #f79122;
+}
+
+.home-cats p a {
+    color: #555;
+    font-weight: 400;
+}
