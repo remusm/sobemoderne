@@ -54,7 +54,17 @@ function woocommerce_support() {
  * Display the subcategories of a given category, by name
  */
 function woocommerce_subcats_from_parentcat_by_NAME($atts) {
-
+?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 breadcrumb-top">
+                <?php woocommerce_breadcrumb(); ?>
+                
+                <hr class="breadcrumb-underline">
+            </div>
+        </div>
+        <div class="row"> 
+<?php
     $parent_cat_NAME = $atts['categorie'];
     
     $IDbyNAME = get_term_by('name', $parent_cat_NAME, 'product_cat');
@@ -80,7 +90,7 @@ function woocommerce_subcats_from_parentcat_by_NAME($atts) {
     foreach ($subcats as $cat) { ?>
     <div class="col-md-4 text-center">
         <?php
-            //echo $link = get_term_link( $cat->slug, $cat->taxonomy ).'<br>';
+            $link = get_term_link( $cat->slug, $cat->taxonomy );
            
             $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
                 $image = wp_get_attachment_url( $thumbnail_id );
@@ -93,7 +103,10 @@ function woocommerce_subcats_from_parentcat_by_NAME($atts) {
                     <p><?php echo '<br>'.$cat->name; ?> </p></a>
                
     </div>
-    <?php }
+    <?php } ?>
+        </div>
+    </div>
+<?php    
 }
 
 add_shortcode( 'categorie_shortcode', 'woocommerce_subcats_from_parentcat_by_NAME' );
@@ -106,4 +119,109 @@ function wc_category_info_by_name($parent_cat_NAME) {
     $IDbyNAME = get_term_by('name', $parent_cat_NAME, 'product_cat');
 
     echo $IDbyNAME->description;
+}
+
+/*
+ * Display the category slider
+ */
+function wc_category_slider($atts) {
+?>
+    <div class="cat-slider-wrapper">
+        
+        <div class="container">
+            <div class="row">  
+                    <?php echo do_shortcode('[gallery ids="'.$atts['id1'].','.$atts['id2'].'" transition="dissolve" autoplay="5000" arrows="false" click="false" swipe="false" nav="false" width="100%" height="auto"]'); ?>                
+            </div>
+        </div>
+           
+    </div>
+    <div class="category-description">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1><?php echo get_the_title(); ?></h1>
+                    <p class="page-subtitle"> <?php wc_category_info_by_name(get_the_title());?> </p>
+                </div>
+            </div>
+        </div> <!-- /container -->
+    </div>  
+<?php 
+}
+
+add_shortcode( 'fotografii_slider', 'wc_category_slider' );
+
+/**
+ * Opening div for our content wrapper
+ */
+function sobe_open_div () {
+?>
+
+    <div class="cat-slider-wrapper">
+        
+        <div class="container">
+            <div class="row">  
+                    <?php echo do_shortcode('[gallery ids="42,43" transition="dissolve" autoplay="5000" arrows="false" click="false" swipe="false" nav="false" width="100%" height="auto"]'); ?>                
+            </div>
+        </div>
+           
+    </div><!-- end cat-slider-wrapper -->
+      
+
+    <?php
+}
+
+add_action('woocommerce_before_main_content', 'sobe_open_div', 5);
+
+/**
+ * Closing div for the content wrapper
+ */
+add_action('woocommerce_after_main_content', 'sobe_close_div', 50);
+ 
+function sobe_close_div() { ?>
+  
+<?php }
+
+//Reposition WooCommerce breadcrumb 
+function woocommerce_remove_breadcrumb(){
+    remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
+}
+add_action('woocommerce_before_main_content', 'woocommerce_remove_breadcrumb');
+
+function woocommerce_custom_breadcrumb(){
+    woocommerce_breadcrumb();
+}
+
+add_action( 'woo_custom_breadcrumb', 'woocommerce_custom_breadcrumb' );
+
+/*
+ * Hide sub-category product count in product archives
+ */
+add_filter( 'woocommerce_subcategory_count_html', 'sobe_hide_category_count' );
+function sobe_hide_category_count() {
+	// No count
+}
+
+//Display product category descriptions under category image/title on woocommerce shop page */
+
+add_action( 'woocommerce_after_subcategory', 'my_add_cat_description', 12);
+function my_add_cat_description ($category) {
+
+    $cat_id = $category->term_id;
+    $prod_term = get_term($cat_id, 'product_cat');
+    $description = $prod_term->description;
+    //echo '<div class="shop_cat_desc">'.$description.'</div>';
+    echo '<div style="clear:both;"></div>';
+    echo substr($description, 0, strpos(wordwrap($description, 130), "\n")).'...';
+    
+    $link = get_term_link( $prod_term->slug, $prod_term->taxonomy );
+    
+    echo '<a class="buton-detalii" href="'.$link.'">Detalii</a>';
+}
+
+// Change number or products per row to 3
+add_filter('loop_shop_columns', 'loop_columns');
+if (!function_exists('loop_columns')) {
+	function loop_columns() {
+		return 3; // 3 products per row
+	}
 }

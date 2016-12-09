@@ -14,6 +14,7 @@ body {
 
 img {
     max-width: 100%;
+    height: auto;
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Open Sans',sans-serif;
@@ -36,7 +37,7 @@ h3 {
 /*
     HEADER STYLES
 */
-.page-subtitle {
+.page-subtitle, .term-description {
     font-size: 18px;
     line-height: 26px;
     font-weight: 200;
@@ -116,6 +117,33 @@ h3 {
 }
 
 /* CATEGORY WITH SUBCATEGORIES PAGE STYLES */
+
+.product {
+    margin-bottom: 30px;
+}
+
+.shop_cat_desc {
+    clear: both;
+    margin-top: 10px;
+}
+
+.products {
+    margin: 20px 0 40px 0;
+}
+
+.products h3 {
+    text-transform: capitalize;
+    line-height: 22px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.products a:hover {
+    color: #f79122;
+}
+.woocommerce-breadcrumb a {
+    text-transform: capitalize!important;
+}
 .breadcrumb-top {
     margin-top: 10px;
 }
@@ -163,8 +191,18 @@ h3 {
     border-bottom: 1px solid #ddd;
 }
 
-.fotorama--wp {
+.cat-slider-wrapper .fotorama--wp {
     padding: 4px;
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* BUTTONS & LINKS */
+.buton-detalii {
+    color: #f79122;
+    font-weight: 400;
+}
+
+.buton-detalii:hover {
+    color: #f79122;
 }
