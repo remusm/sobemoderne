@@ -18,6 +18,7 @@ function theme_styles() {
 	wp_enqueue_style ( 'bootstrap_css', get_template_directory_uri() .'/css/bootstrap.min.css' );
 	wp_enqueue_style ( 'fontawesome_css', get_template_directory_uri() .'/font-awesome/css/font-awesome.min.css' );
 	wp_enqueue_style ( 'main_css', get_template_directory_uri() .'/style.css' );
+        wp_enqueue_style ( 'flex_slider', get_template_directory_uri() .'/flexslider/flexslider.css' );
 	
 }    
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
@@ -32,6 +33,7 @@ function theme_js () {
 	$wp_scripts -> add_data ( 'respond_js ', 'conditional', 'lt IE 9' );  
 	
 	wp_enqueue_script ( 'bootstrap_js', get_template_directory_uri() .'/js/bootstrap.min.js', array ('jquery'), '', true ); 
+	wp_enqueue_script ( 'flex_slider_js', get_template_directory_uri() .'/flexslider/jquery.flexslider-min.js','', '', false  ); 
 	
 }
 add_action( 'wp_enqueue_scripts', 'theme_js' );
@@ -40,6 +42,24 @@ add_action( 'wp_enqueue_scripts', 'theme_js' );
  * Hide admin bar when viewing the front-end
  */
 add_filter ( 'show_admin_bar', '__return_false' );  
+
+/**
+ * Register our sidebars and widgetized areas.
+ *
+ */
+function arphabet_widgets_init() {
+
+	register_sidebar( array(
+		'name'          => 'Home right sidebar',
+		'id'            => 'home_right_1',
+		'before_widget' => '<div>',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="rounded">',
+		'after_title'   => '</h2>',
+	) );
+
+}
+add_action( 'widgets_init', 'arphabet_widgets_init' );
 
 /*
  * Declare Woocommerce support 
@@ -55,14 +75,9 @@ function woocommerce_support() {
  */
 function woocommerce_subcats_from_parentcat_by_NAME($atts) {
 ?>
+
+<?php woocommerce_breadcrumb(); ?>
     <div class="container">
-        <div class="row">
-            <div class="col-md-12 breadcrumb-top">
-                <?php woocommerce_breadcrumb(); ?>
-                
-                <hr class="breadcrumb-underline">
-            </div>
-        </div>
         <div class="row"> 
 <?php
     $parent_cat_NAME = $atts['categorie'];
@@ -126,11 +141,12 @@ function wc_category_info_by_name($parent_cat_NAME) {
  */
 function wc_category_slider($atts) {
 ?>
-    <div class="cat-slider-wrapper">
-        
+    <div class="cat-slider-wrapper">        
         <div class="container">
             <div class="row">  
+                <div class="col-md-12">  
                     <?php echo do_shortcode('[gallery ids="'.$atts['id1'].','.$atts['id2'].'" transition="dissolve" autoplay="5000" arrows="false" click="false" swipe="false" nav="false" width="100%" height="auto"]'); ?>                
+                </div>
             </div>
         </div>
            
@@ -156,11 +172,13 @@ add_shortcode( 'fotografii_slider', 'wc_category_slider' );
 function sobe_open_div () {
 ?>
 
-    <div class="cat-slider-wrapper">
+    <!--<div class="cat-slider-wrapper">
         
         <div class="container">
             <div class="row">  
-                    <?php echo do_shortcode('[gallery ids="42,43" transition="dissolve" autoplay="5000" arrows="false" click="false" swipe="false" nav="false" width="100%" height="auto"]'); ?>                
+                <div class="col-md-12"> 
+                    <?php //echo do_shortcode('[gallery ids="42,43" transition="dissolve" autoplay="5000" arrows="false" click="false" swipe="false" nav="false" width="100%" height="auto"]'); ?>                
+                </div>    
             </div>
         </div>
            
@@ -192,6 +210,9 @@ function woocommerce_custom_breadcrumb(){
 }
 
 add_action( 'woo_custom_breadcrumb', 'woocommerce_custom_breadcrumb' );
+
+
+add_action('woocommerce_before_single_product', 'woocommerce_custom_breadcrumb', 10);
 
 /*
  * Hide sub-category product count in product archives
@@ -225,3 +246,42 @@ if (!function_exists('loop_columns')) {
 		return 3; // 3 products per row
 	}
 }
+
+function add_product_short_description_archive_pages() {
+    $description = strip_tags(the_excerpt());  
+    //echo $description;
+    echo substr($description, 0, strpos(wordwrap($description, 20), "\n")).'...';
+     
+}
+add_action( 'woocommerce_after_shop_loop_item_title', 'add_product_short_description_archive_pages', 40 );
+
+// Remove products sorting
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+
+// Removes showing results in category page
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+
+// Remove related products in product page
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+add_action( 'woocommerce_after_single_product', 'woocommerce_output_related_products', 20 );
+
+// Disable product review (tab)
+function woo_remove_product_tabs($tabs) {
+    unset($tabs['reviews']); // Remove Reviews tab
+    unset($tabs['description']);
+    unset($tabs['additional_information']);
+    return $tabs;
+}
+
+add_filter( 'woocommerce_product_tabs', 'woo_remove_product_tabs', 98 );
+
+/*
+ * PRODUCT DETAILS PAGE
+ * Remove excerpt
+ * Remove categories
+ */
+remove_action ('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
+remove_action ('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
+remove_action ('woocommerce_before_single_product_summary', 'woocommerce_show_product_images', '20');
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', '5');
+add_action ('woocommerce_before_single_product_summary', 'woocommerce_template_single_title', '5');

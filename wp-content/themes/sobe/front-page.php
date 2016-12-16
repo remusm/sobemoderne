@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row home-cats">
             <div class="col-md-5 hmargin">
-                <h3><a href="#">STOVES</a></h3>
+                <h3><a href="<?php bloginfo('url'); ?>/stoves">STOVES</a></h3>
                 <img src="<?php bloginfo('template_url'); ?>/images/categories/stoves.jpg">
                 <p><a href="#">Traditional</a> and <a href="#">contemporary stoves</a>. <a href="#">Wood burning stoves</a>, <a href="#">multi-fuel stoves</a>, <a href="#">gas stoves</a> and <a href="#">electric stoves</a>.</p>
             </div>

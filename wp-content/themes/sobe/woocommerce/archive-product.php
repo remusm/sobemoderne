@@ -31,6 +31,18 @@ get_header( 'shop' ); ?>
 		 */
 		do_action( 'woocommerce_before_main_content' );
 	?>
+    <div class="cat-slider-wrapper">
+        
+        <div class="container">
+            <div class="row">  
+                <div class="col-md-12"> 
+                    <?php echo do_shortcode('[gallery ids="42,43" transition="dissolve" autoplay="5000" arrows="false" click="false" swipe="false" nav="false" width="100%" height="auto"]'); ?>                
+                </div>    
+            </div>
+        </div>
+           
+    </div><!-- end cat-slider-wrapper -->
+
 <div class="category-description">
     <div class="container">
         <div class="row">
@@ -56,13 +68,9 @@ get_header( 'shop' ); ?>
     </div> <!-- /container -->
 </div><!-- category-description -->
 
+<?php do_action( 'woo_custom_breadcrumb'); ?>
+
 <div class="container">
-    <div class="row">
-        <div class="col-md-12 breadcrumb-top">
-            <?php do_action('woo_custom_breadcrumb'); ?>                            
-            <hr class="breadcrumb-underline">
-        </div>
-    </div>
 
 		<?php if ( have_posts() ) : ?>
 

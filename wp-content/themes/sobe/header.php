@@ -12,16 +12,22 @@
         <title><?php bloginfo(); ?></title>
 
         <?php wp_head(); ?>
+        <!-- FlexSlider -->
+        <script type="text/javascript" charset="utf-8">
+            jQuery(window).load(function() {
+              jQuery('.flexslider').flexslider();
+            });
+        </script>
     </head>
 
     <body>
-        <div style="margin: 40px 0;"></div>
-        <div class="container">
+        <div class="container" style="margin-top: 35px; margin-bottom: 20px;">
             <div class="row">
-                <div class="col-md-12">
-                        <a href="<?php bloginfo('url');?>"><img src="<?php bloginfo('template_url'); ?>/images/logo.png"></a>
-               
-                               
+                <div class="col-md-6">
+                    <a href="<?php bloginfo('url');?>"><img src="<?php bloginfo('template_url'); ?>/images/logo.png"></a>
+                </div>
+                
+                <div class="col-md-6">              
                       <?php
                       $args = array (
                           'menu'  => 'header-menu',
@@ -32,8 +38,9 @@
                       wp_nav_menu( $args );
                       ?>    
                    
+                    <?php get_search_form(); ?> 
                 </div>
-            </div>   
+            </div>  
+ 
         </div> <!-- /container -->
-        <div style="margin: 40px 0;"></div>
        
