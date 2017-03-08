@@ -27,7 +27,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
-<div <?php post_class('col-md-4 text-center'); ?>>
+<div <?php post_class('col-xs-6 col-sm-4 col-md-4 text-center'); ?>>
 	<?php
 	/**
 	 * woocommerce_before_shop_loop_item hook.
@@ -51,7 +51,6 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 */
 	do_action( 'woocommerce_before_shop_loop_item_title' );        
 
-
 	/**
 	 * woocommerce_after_shop_loop_item_title hook.
 	 *
@@ -59,7 +58,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 * @hooked woocommerce_template_loop_price - 10
 	 */
 	do_action( 'woocommerce_after_shop_loop_item_title' );
-
+        
 	/**
 	 * woocommerce_after_shop_loop_item hook.
 	 *
@@ -67,5 +66,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 * @hooked woocommerce_template_loop_add_to_cart - 10
 	 */
 	do_action( 'woocommerce_after_shop_loop_item' );
+
+
 	?>
 </div>

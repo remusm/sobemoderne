@@ -50,6 +50,7 @@ h3 {
     color: #717171;
     padding: 35px 0;
     text-align: center;    
+    margin-top: 40px;
 }
 
 /* MENU STYLES */
@@ -117,11 +118,66 @@ h3 {
 }
 
 /* CATEGORY WITH SUBCATEGORIES PAGE STYLES */
+
+/* Products pagination */
+.woocommerce-pagination {
+    text-align: center;
+}
+.page-numbers {
+    list-style: none;
+}
+
+.page-numbers li {
+    display: inline-block;
+
+    background-color: #f79122;
+}
+
+.page-numbers li a, .current, .dots {
+    display: inline-block;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+}
+
+.page-numbers li a:hover, .current:hover {
+    background-color: #aaa7a7;    
+}
+
+.page-numbers li .current {
+    display: inline-block;
+    color: #f79122;
+    padding: 10px;
+    background-color: #717171;
+}
+
+.page-numbers li a:hover {
+    text-decoration: none;
+}
+
+.read-more {
+    color: #f79122;    
+    cursor: pointer;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+.products a:hover h3 {
+    text-decoration: underline;
+}
+
 .woocommerce-LoopProduct-link p {
     cursor: default;
     text-decoration: none;
     font-weight: 300;
     color: #555;
+    margin: 0.6em auto;
+    max-width: 300px;
+    font-size: 13px;
+    text-align: left;
 }
 
 .woocommerce-LoopProduct-link p:hover {
@@ -133,12 +189,14 @@ h3 {
     text-decoration: none!important;
 }
 
-.button {
+.products .price {
     color: #f79122;
+    font-weight: bold;
+    font-size: 14px;
 }
 
-.product {
-    margin-bottom: 30px;
+.button {
+    color: #f79122;
 }
 
 .shop_cat_desc {
@@ -245,17 +303,7 @@ h3 {
     border-bottom: 1px solid #ddd;
     padding-bottom: 20px;
     padding-top: 20px;
-}
-.summary, .additional_information {
-    width: 48%; float: left;
-}
-
-.summary {
-    margin-right: 1%;
-}
-
-.additional_information {
-    margin-left: 1%;
+    margin-top: 20px;
 }
 
 .summary h1 {
@@ -308,7 +356,63 @@ input[type="color"]:focus,
   outline: 0 none;
 }
 
+/* Bootstrap tables cell align */
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    vertical-align: middle;
+}
+
+.table p {
+    margin: 0;
+}
+
 .alert-info {
     color: #fff;
     background-color: #eca567!important;
+}
+
+.additional_information .price {
+    background: #f79122;
+    color: #fff;
+    padding: 8px;
+    display: inline;
+}
+
+/* MEDIA QUERIES */
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+
+    .products .product {
+        margin-bottom: 20px;
+        height: 375px;
+    }
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+
+    .products .product {
+        margin-bottom: 30px;
+        height: 410px;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    .products .product {
+        margin-bottom: 30px;
+        height: 390px;
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    .products .product {
+        height: 420px;
+    }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
 }

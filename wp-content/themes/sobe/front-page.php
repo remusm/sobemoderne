@@ -20,27 +20,23 @@
     <div class="container">
         <div class="row home-cats">
             <div class="col-md-5 hmargin">
-                <h3><a href="<?php bloginfo('url'); ?>/stoves">STOVES</a></h3>
+                <h3><a href="<?php bloginfo('url'); ?>/categorie/sobe-sobe-pe-lemn">SOBE PE LEMN</a></h3>
                 <img src="<?php bloginfo('template_url'); ?>/images/categories/stoves.jpg">
-                <p><a href="#">Traditional</a> and <a href="#">contemporary stoves</a>. <a href="#">Wood burning stoves</a>, <a href="#">multi-fuel stoves</a>, <a href="#">gas stoves</a> and <a href="#">electric stoves</a>.</p>
             </div>
             <div class="col-md-5 hmargin">
-                <h3><a href="#">BUILT IN & WALL MOUNTED FIRES</a></h3>
+                <h3><a href="<?php bloginfo('url'); ?>/categorie/sobe-sobe-pe-peleti">SOBE PE PELETI</a></h3>
                 <img src="<?php bloginfo('template_url'); ?>/images/categories/hearth-mounted-fires.jpg">
-                <p><a href="#">Traditional</a> and <a href="#">contemporary stoves</a>. <a href="#">Wood burning stoves</a>, <a href="#">multi-fuel stoves</a>, <a href="#">gas stoves</a> and <a href="#">electric stoves</a>.</p>
             </div>
             <div class="col-md-2 hmargin">
                 <img src="<?php bloginfo('template_url'); ?>/images/banner-1.jpg" height="180" style="margin-top: 30px;">
              </div>
             <div class="col-md-5 hmargin">
-                <h3><a href="#">HEARTH MOUNTED FIRES</a></h3>
+                <h3><a href="<?php bloginfo('url'); ?>/categorie/sobe-centrala-pe-lemn">CENTRALA PE LEMN</a></h3>
                 <img src="<?php bloginfo('template_url'); ?>/images/categories/stoves.jpg">
-                <p><a href="#">Traditional</a> and <a href="#">contemporary stoves</a>. <a href="#">Wood burning stoves</a>, <a href="#">multi-fuel stoves</a>, <a href="#">gas stoves</a> and <a href="#">electric stoves</a>.</p>
             </div>
             <div class="col-md-5 hmargin">
-                <h3><a href="#">FIREPLACES & MANTELS</a></h3>
+                <h3><a href="<?php bloginfo('url'); ?>/categorie/sobe-centrala-pe-peleti">CENTRALA PE PELETI</a></h3>
                 <img src="<?php bloginfo('template_url'); ?>/images/categories/hearth-mounted-fires.jpg">
-                <p><a href="#">Traditional</a> and <a href="#">contemporary stoves</a>. <a href="#">Wood burning stoves</a>, <a href="#">multi-fuel stoves</a>, <a href="#">gas stoves</a> and <a href="#">electric stoves</a>.</p>
             </div>
             <div class="col-md-2 hmargin">
                 <img src="<?php bloginfo('template_url'); ?>/images/banner-1.jpg" height="180" style="margin-top: 30px;">

@@ -247,14 +247,6 @@ if (!function_exists('loop_columns')) {
 	}
 }
 
-function add_product_short_description_archive_pages() {
-    $description = strip_tags(the_excerpt());  
-    //echo $description;
-    echo substr($description, 0, strpos(wordwrap($description, 20), "\n")).'...';
-     
-}
-add_action( 'woocommerce_after_shop_loop_item_title', 'add_product_short_description_archive_pages', 40 );
-
 // Remove products sorting
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
 
@@ -284,4 +276,51 @@ remove_action ('woocommerce_single_product_summary', 'woocommerce_template_singl
 remove_action ('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
 remove_action ('woocommerce_before_single_product_summary', 'woocommerce_show_product_images', '20');
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', '5');
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', '30');
+/* remove add to cart button from category page */
+remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price');
+add_action ('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_price', '15');
+remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
 add_action ('woocommerce_before_single_product_summary', 'woocommerce_template_single_title', '5');
+add_action ('woocommerce_after_single_product_summary', 'woocommerce_template_single_price', '10');
+
+function custom_excerpt_length( $length ) {
+	return 15;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
+/**
+ * Filter the excerpt "read more" string.
+ *
+ * @param string $more "Read more" excerpt string.
+ * @return string (Maybe) modified "read more" excerpt string.
+ */
+function wpdocs_excerpt_more( $more ) {
+    return '... <span class="read-more">Detalii</span>';
+}
+add_filter( 'excerpt_more', 'wpdocs_excerpt_more' );
+
+// Display 12 products per page. Goes in functions.php
+add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 12;' ), 20 );
+
+/**
+ * WooCommerce Extra Feature
+ * --------------------------
+ *
+ * Change number of related products on product page
+ * Set your own value for 'posts_per_page'
+ *
+ */ 
+function woo_related_products_limit() {
+  global $product;
+	
+	$args['posts_per_page'] = 6;
+	return $args;
+}
+add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_args' );
+  function jk_related_products_args( $args ) {
+	$args['posts_per_page'] = 3; // 4 related products
+	$args['columns'] = 3; // arranged in 2 columns
+	return $args;
+}

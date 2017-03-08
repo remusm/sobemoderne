@@ -49,7 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                         do_action( 'woocommerce_before_single_product_summary' );
                 ?>
 
-                <div class="summary entry-summary">
+                <div class="summary entry-summary col-xs-12 col-sm-6 col-md-6">
     <?php
 
     global $product;
@@ -83,9 +83,9 @@ if ( ! defined( 'ABSPATH' ) ) {
                         ?>
                             
                 </div><!-- .summary -->
-                <div class="additional_information">                    
+                <div class="additional_information col-xs-12 col-sm-6 col-md-6">                    
                         <?php woocommerce_product_additional_information_tab();?>
-                </div>
+                
                 <?php
                         /**
                          * woocommerce_after_single_product_summary hook.
@@ -96,7 +96,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                          */
                         do_action( 'woocommerce_after_single_product_summary' );
                 ?>
-
+                </div>
                 <meta itemprop="url" content="<?php the_permalink(); ?>" />
 
         </div><!-- #product-<?php the_ID(); ?> -->
